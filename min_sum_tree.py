@@ -30,7 +30,7 @@ def min_subtree_sum(T, i, j):
     return T[i][j] + m
 
 print('simple best sum')
-pprint(min_subtree_sum(example, 0, 0))
+print(min_subtree_sum(example, 0, 0))
 print()
 # ================================
 
@@ -86,14 +86,16 @@ def better_min_subtree_sum(T, i, j):
 
     lsum = float('inf')
     rsum = float('inf')
-    
+
     m,n = lchild_loc(i,j)
     if T[m][n] is not None:
-        lsum = min_subtree_sum(T,m,n)
+        lsum = better_min_subtree_sum(T,m,n)
 
     m,n = rchild_loc(i,j)
     if T[m][n] is not None:
-        rsum = min_subtree_sum(T,m,n)
+        rsum = better_min_subtree_sum(T,m,n)
     m = min(lsum, rsum)
 
     return T[i][j] + m
+
+print(better_min_subtree_sum(T,0,0))
